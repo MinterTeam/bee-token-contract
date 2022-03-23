@@ -16,11 +16,10 @@ async function main() {
     // We get the contract to deploy
     const BeeToken = await hre.ethers.getContractFactory("BeeToken");
     const beeToken = await BeeToken.deploy();
+
     await beeToken.deployed();
 
     console.log("BeeToken deployed to:", beeToken.address);
-
-    await beeToken.deployTransaction.wait(10);
 
     await hre.run("verify:verify", {
         address: beeToken.address,
